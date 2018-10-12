@@ -1,0 +1,89 @@
+package com.hs.web.servlet;
+
+import com.hs.dao.ManiyRoomTypeDao;
+import com.hs.dao.RoomTypeDaoGH;
+import com.hs.dao.impl.RoomTypeDaoImplGH;
+import com.hs.entity.*;
+import com.hs.service.ManiyGoodsService;
+import com.hs.service.ManiyRoomServiceService;
+import com.hs.service.ManiyRoomTypeService;
+import com.hs.service.impl.ManiyGoodsServiceImpl;
+import com.hs.service.impl.ManiyRoomServiceServiceImpl;
+import com.hs.service.impl.ManiyRoomTypeServiceImpl;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author liuzonghua
+ * @Package ${PACKAGE_NAME}
+ * @Description:
+ * @date 2018/9/23 15:43
+ */
+@WebServlet(name = "ManiySaveRoomServiceServlet",urlPatterns = {"/maniySaveRoomService"})
+public class ManiySaveRoomServiceServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name=request.getParameter("name");
+        int roomtypeid= Integer.parseInt(request.getParameter("roomtypeid"));
+        String roomnumber=request.getParameter("roomnumber");
+        String  goods=request.getParameter("goods");
+
+        ManiyRoomServiceService maniyRoomServiceService=new ManiyRoomServiceServiceImpl();
+        ManiyGoodsService maniyGoodsService =new ManiyGoodsServiceImpl();
+        ManiyRoomTypeService maniyRoomTypeService=new ManiyRoomTypeServiceImpl();
+
+        int totalPrice=0;//价格总计
+        String serviceName="";//服务名称
+        //String拆分
+        String [ ] line=goods.split(",");
+        for(String str:line) {
+            System.out.println(str);
+            String [ ] line2=str.split(":");
+            System.out.println(line2[0]);
+            //跟据获取物品对象
+            Goods maniyGoods=maniyGoodsService.getGoods(1);
+            //计算总价
+            totalPrice=Integer.parseInt(line2[1])*maniyGoods.getGprice()+totalPrice;
+            //服务详情
+            serviceName=serviceName+"名称："+maniyGoods.getGname()+",单价："+maniyGoods.getGprice()+",数量："+maniyGoods.getGcount()+" ; ";
+
+        }
+
+        //员工信息
+        //User user=(User) request.getSession().getAttribute("user");
+        Roomservice roomservice =new Roomservice();
+        //roomservice.setEmpnumber(user.getEmpnumber());
+        roomservice.setEmpnumber("测试数据");
+        roomservice.setName(name);
+        roomservice.setRoomnumber(roomnumber);
+        roomservice.setRoomtypeid(roomtypeid);
+        roomservice.setRoomtypename(maniyRoomTypeService.getRoomtypeNameByRoomtypeId(roomtypeid));
+        roomservice.setServicename(serviceName);
+        roomservice.setServicetotalprice(totalPrice);
+        roomservice.setServicetime(String.valueOf(new Date()));
+        System.out.println(roomservice);
+        maniyRoomServiceService.saveRoomService(roomservice);
+        PrintWriter out=response.getWriter();
+        out.print(1);
+
+        out.flush();
+        out.close();
+
+
+
+
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
+    }
+}

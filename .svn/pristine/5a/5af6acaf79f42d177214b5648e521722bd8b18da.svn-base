@@ -1,0 +1,191 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost_3306
+Source Server Version : 50515
+Source Host           : localhost:3306
+Source Database       : hotelsystem
+
+Target Server Type    : MYSQL
+Target Server Version : 50515
+File Encoding         : 65001
+
+Date: 2018-09-20 20:46:42
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for customer
+-- ----------------------------
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '顾客id，主键，自增',
+  `name` varchar(20) DEFAULT NULL COMMENT '顾客姓名',
+  `sex` varchar(1) DEFAULT NULL COMMENT '顾客性别：1表示男，0表示女',
+  `idcard` varchar(20) DEFAULT NULL COMMENT '顾客的身份证',
+  `phone` varchar(20) DEFAULT NULL COMMENT '顾客的电话号码',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of customer
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for goods
+-- ----------------------------
+DROP TABLE IF EXISTS `goods`;
+CREATE TABLE `goods` (
+  `gid` int(10) NOT NULL AUTO_INCREMENT COMMENT '商品id',
+  `gname` varchar(50) DEFAULT NULL COMMENT '商品名称',
+  `gprice` int(10) DEFAULT NULL COMMENT '商品价格：元',
+  `gcount` int(10) DEFAULT NULL COMMENT '商品库存量',
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------
+INSERT INTO `goods` VALUES ('1', '方便面', '5', '100');
+INSERT INTO `goods` VALUES ('2', '怡宝水', '2', '200');
+INSERT INTO `goods` VALUES ('3', '卫龙辣条', '3', '150');
+INSERT INTO `goods` VALUES ('4', '刮胡刀', '20', '50');
+INSERT INTO `goods` VALUES ('5', '毛巾', '15', '300');
+
+-- ----------------------------
+-- Table structure for houqin
+-- ----------------------------
+DROP TABLE IF EXISTS `houqin`;
+CREATE TABLE `houqin` (
+  `empnumber` varchar(50) DEFAULT NULL COMMENT '后勤员工的员工编号',
+  `roomid` int(10) DEFAULT NULL COMMENT '房间id',
+  `roomnumber` varchar(50) DEFAULT NULL COMMENT '房间编号',
+  `roomtypename` varchar(50) DEFAULT NULL COMMENT '房间类型名称',
+  `staercleantime` varchar(50) DEFAULT NULL COMMENT '开始打扫房间的时间',
+  `endcleantime` varchar(50) DEFAULT NULL COMMENT '房间打扫结束的时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of houqin
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for orderinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `orderinfo`;
+CREATE TABLE `orderinfo` (
+  `orderid` int(20) NOT NULL COMMENT '顾客账单的编号，时间+随机数生成。',
+  `customername` varchar(20) DEFAULT NULL COMMENT '顾客名称',
+  `customerphone` varchar(20) DEFAULT NULL COMMENT '顾客联系电话',
+  `customeridcard` varchar(20) DEFAULT NULL COMMENT '顾客的身份证',
+  `customersex` varchar(1) DEFAULT NULL COMMENT '顾客性别',
+  `roomnumber` varchar(50) DEFAULT NULL COMMENT '房间编号',
+  `roomtypeid` int(10) DEFAULT NULL COMMENT '房间类型id',
+  `roomtypename` varchar(50) DEFAULT NULL COMMENT '房间类型名称',
+  `empnumber1` varchar(50) DEFAULT NULL COMMENT '顾客预定时，提供服务的员工的员工编号',
+  `empnumber2` varchar(50) DEFAULT NULL COMMENT '顾客入住时，提供服务的员工的员工编号',
+  `empnumber3` varchar(50) DEFAULT NULL COMMENT '顾客退房时，提供服务的员工的员工编号',
+  `empnumber4` varchar(50) DEFAULT NULL COMMENT '顾客换房时，提供服务的员工的员工编号',
+  `ordertime` varchar(50) DEFAULT NULL COMMENT '预定日期',
+  `checkintime` varchar(50) DEFAULT NULL COMMENT '入住日期',
+  `checkouttime` varchar(50) DEFAULT NULL COMMENT '退房日期',
+  `roomprice` int(10) DEFAULT NULL COMMENT '当前时间下的房间单价：元/间/天',
+  `roomtotalprice` int(10) DEFAULT NULL COMMENT '顾客总计房费：入住天数*房间单价',
+  `servicetotalprice` int(10) DEFAULT NULL COMMENT '服务总价',
+  `statydays` int(10) DEFAULT NULL COMMENT '顾客入住天数：退房时间和入住时间之差。',
+  `orderstatus` int(1) DEFAULT NULL COMMENT '账单状态：0--未完结，1--完结（即已退房）',
+  PRIMARY KEY (`orderid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderinfo
+-- ----------------------------
+INSERT INTO `orderinfo` VALUES ('1', 'ad', '12121', '9709809901000', 'n', '1001', '1', 'vip', '1', '1', '1', '1', '2018-9-19', '2018-9-20', '2018-9-21', '5', '5', '45', '1', '1');
+
+-- ----------------------------
+-- Table structure for room
+-- ----------------------------
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE `room` (
+  `roomid` int(10) NOT NULL AUTO_INCREMENT,
+  `roomnumber` varchar(50) DEFAULT NULL COMMENT '房间编号',
+  `roomtypeid` int(10) DEFAULT NULL COMMENT '房间类型id',
+  `roomtypename` varchar(50) DEFAULT NULL COMMENT '房间类型名称',
+  `roomintroduce` varchar(255) DEFAULT NULL COMMENT '房间详细设施介绍',
+  `roomstatus` int(1) DEFAULT NULL COMMENT '房间状态：\r\n0--空闲，\r\n1--预定，\r\n2--入住，\r\n3--打扫中，\r\n4--维修中，\r\n5--接取中。',
+  PRIMARY KEY (`roomid`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of room
+-- ----------------------------
+INSERT INTO `room` VALUES ('1', '1001', '1', '标准大床房', '一张大床，wifi，热水器等', '0');
+INSERT INTO `room` VALUES ('2', '1002', '2', '豪华商务标间', '双床，wifi等', '0');
+INSERT INTO `room` VALUES ('3', '1003', '3', '温馨家庭间', '多张床，wifi，房间35平米', '0');
+INSERT INTO `room` VALUES ('4', '1004', '4', '豪华娱乐间', '大床2米，房间45平米，wifi', '0');
+INSERT INTO `room` VALUES ('5', '2001', '1', '标准大床房', '一张大床，wifi，热水器等', '1');
+INSERT INTO `room` VALUES ('6', '2002', '2', '豪华商务标间', '双床，wifi等', '2');
+INSERT INTO `room` VALUES ('7', '2003', '3', '温馨家庭间', '多张床，wifi，房间35平米', '3');
+INSERT INTO `room` VALUES ('8', '2004', '4', '豪华娱乐间', '大床2米，房间45平米，wifi', '4');
+INSERT INTO `room` VALUES ('9', '3001', '1', '标准大床房', '一张大床，wifi，热水器等', '5');
+
+-- ----------------------------
+-- Table structure for roomservice
+-- ----------------------------
+DROP TABLE IF EXISTS `roomservice`;
+CREATE TABLE `roomservice` (
+  `id` int(10) DEFAULT NULL COMMENT '顾客id',
+  `name` varchar(20) DEFAULT NULL COMMENT '顾客姓名',
+  `roomnumber` varchar(50) DEFAULT NULL COMMENT '房间编号',
+  `roomtypeid` int(10) DEFAULT NULL COMMENT '房间类型id',
+  `roomtypename` varchar(50) DEFAULT NULL COMMENT '房间类型名称',
+  `servicename` varchar(255) DEFAULT NULL COMMENT '服务名称，记录顾客消费的商品名称、单价及其数量',
+  `servicetotalprice` int(10) DEFAULT NULL COMMENT '服务总价：商品单价*数量+......',
+  `servicetime` varchar(50) DEFAULT NULL COMMENT '顾客服务消费时的时间',
+  `empnumber` varchar(50) DEFAULT NULL COMMENT '服务提供员工编号'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of roomservice
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for roomtype
+-- ----------------------------
+DROP TABLE IF EXISTS `roomtype`;
+CREATE TABLE `roomtype` (
+  `roomtypeid` int(10) NOT NULL AUTO_INCREMENT COMMENT '房间类型id，主键，自增',
+  `roomtypename` varchar(50) DEFAULT NULL COMMENT '房间类型名称',
+  `roomtypeintroduce` varchar(255) DEFAULT NULL COMMENT '房间类型描述',
+  `roomtypeprice` int(10) DEFAULT NULL COMMENT '房间类型的单价：元/间/天',
+  PRIMARY KEY (`roomtypeid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of roomtype
+-- ----------------------------
+INSERT INTO `roomtype` VALUES ('1', '标准大床房', '一张大床，wifi，热水器等', '200');
+INSERT INTO `roomtype` VALUES ('2', '豪华商务标间', '双床，wifi等', '300');
+INSERT INTO `roomtype` VALUES ('3', '温馨家庭间', '多张床，wifi，房间35平米', '308');
+INSERT INTO `roomtype` VALUES ('4', '豪华娱乐间', '大床2米，房间45平米，wifi', '628');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `userid` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `empnumber` varchar(50) DEFAULT NULL COMMENT '用户名，即员工编号，由年月日时分秒+三位随机数组成',
+  `password` varchar(50) DEFAULT NULL COMMENT '用户的密码',
+  `roleid` int(1) DEFAULT NULL COMMENT '用户角色：1表示经理，2表示财务，3表示前台，4表示后勤',
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '201510930001', '123456', '1');
+INSERT INTO `user` VALUES ('2', '201510930002', '123', '2');
+INSERT INTO `user` VALUES ('3', '201510930003', '123', '3');
+INSERT INTO `user` VALUES ('4', '201510930004', '123456', '4');

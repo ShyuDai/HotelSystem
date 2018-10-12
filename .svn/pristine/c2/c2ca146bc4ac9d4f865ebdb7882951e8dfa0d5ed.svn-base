@@ -1,0 +1,40 @@
+package com.hs.dao.impl;
+
+import java.util.List;
+
+import com.hs.dao.RoomTypeDaoGH;
+import com.hs.entity.Roomtype;
+
+public class RoomTypeDaoImplGH implements RoomTypeDaoGH {
+
+	@Override
+	public boolean save(Roomtype roomtype) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Roomtype roomtype) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean update(Roomtype roomtype) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Roomtype getRoomType(int roomtypeid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Roomtype> getAllRoomTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

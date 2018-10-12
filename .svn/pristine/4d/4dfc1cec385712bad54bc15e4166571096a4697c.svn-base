@@ -1,0 +1,246 @@
+package com.hs.entity;
+
+public class Orderinfo {
+    private Integer orderid;
+
+    private String customername;
+
+    private String customerphone;
+
+    private String customeridcard;
+
+    private String customersex;
+
+    private String roomnumber;
+
+    private Integer roomtypeid;
+
+    private String roomtypename;
+
+    private String empnumber1;
+
+    private String empnumber2;
+
+    private String empnumber3;
+
+    private String empnumber4;
+
+    private String ordertime;
+
+    private String checkintime;
+
+    private String checkouttime;
+
+    private Integer roomprice;
+
+    private Integer roomtotalprice;
+
+    private Integer servicetotalprice;
+
+    private Integer statydays;
+
+    private Integer orderstatus;
+
+    @Override
+	public String toString() {
+		return "Order [orderid=" + orderid + ", customername=" + customername + ", customerphone=" + customerphone
+				+ ", customeridcard=" + customeridcard + ", customersex=" + customersex + ", roomnumber=" + roomnumber
+				+ ", roomtypeid=" + roomtypeid + ", roomtypename=" + roomtypename + ", empnumber1=" + empnumber1
+				+ ", empnumber2=" + empnumber2 + ", empnumber3=" + empnumber3 + ", empnumber4=" + empnumber4
+				+ ", ordertime=" + ordertime + ", checkintime=" + checkintime + ", checkouttime=" + checkouttime
+				+ ", roomprice=" + roomprice + ", roomtotalprice=" + roomtotalprice + ", servicetotalprice="
+				+ servicetotalprice + ", statydays=" + statydays + ", status=" + orderstatus + "]";
+	}
+
+	public Orderinfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Orderinfo(Integer orderid, String customername, String customerphone, String customeridcard, String customersex,
+			String roomnumber, Integer roomtypeid, String roomtypename, String empnumber1, String empnumber2,
+			String empnumber3, String empnumber4, String ordertime, String checkintime, String checkouttime,
+			Integer roomprice, Integer roomtotalprice, Integer servicetotalprice, Integer statydays, Integer orderstatus) {
+		super();
+		this.orderid = orderid;
+		this.customername = customername;
+		this.customerphone = customerphone;
+		this.customeridcard = customeridcard;
+		this.customersex = customersex;
+		this.roomnumber = roomnumber;
+		this.roomtypeid = roomtypeid;
+		this.roomtypename = roomtypename;
+		this.empnumber1 = empnumber1;
+		this.empnumber2 = empnumber2;
+		this.empnumber3 = empnumber3;
+		this.empnumber4 = empnumber4;
+		this.ordertime = ordertime;
+		this.checkintime = checkintime;
+		this.checkouttime = checkouttime;
+		this.roomprice = roomprice;
+		this.roomtotalprice = roomtotalprice;
+		this.servicetotalprice = servicetotalprice;
+		this.statydays = statydays;
+		this.orderstatus = orderstatus;
+	}
+
+	public Integer getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
+    }
+
+    public String getCustomername() {
+        return customername;
+    }
+
+    public void setCustomername(String customername) {
+        this.customername = customername == null ? null : customername.trim();
+    }
+
+    public String getCustomerphone() {
+        return customerphone;
+    }
+
+    public void setCustomerphone(String customerphone) {
+        this.customerphone = customerphone == null ? null : customerphone.trim();
+    }
+
+    public String getCustomeridcard() {
+        return customeridcard;
+    }
+
+    public void setCustomeridcard(String customeridcard) {
+        this.customeridcard = customeridcard == null ? null : customeridcard.trim();
+    }
+
+    public String getCustomersex() {
+        return customersex;
+    }
+
+    public void setCustomersex(String customersex) {
+        this.customersex = customersex == null ? null : customersex.trim();
+    }
+
+    public String getRoomnumber() {
+        return roomnumber;
+    }
+
+    public void setRoomnumber(String roomnumber) {
+        this.roomnumber = roomnumber == null ? null : roomnumber.trim();
+    }
+
+    public Integer getRoomtypeid() {
+        return roomtypeid;
+    }
+
+    public void setRoomtypeid(Integer roomtypeid) {
+        this.roomtypeid = roomtypeid;
+    }
+
+    public String getRoomtypename() {
+        return roomtypename;
+    }
+
+    public void setRoomtypename(String roomtypename) {
+        this.roomtypename = roomtypename == null ? null : roomtypename.trim();
+    }
+
+    public String getEmpnumber1() {
+        return empnumber1;
+    }
+
+    public void setEmpnumber1(String empnumber1) {
+        this.empnumber1 = empnumber1 == null ? null : empnumber1.trim();
+    }
+
+    public String getEmpnumber2() {
+        return empnumber2;
+    }
+
+    public void setEmpnumber2(String empnumber2) {
+        this.empnumber2 = empnumber2 == null ? null : empnumber2.trim();
+    }
+
+    public String getEmpnumber3() {
+        return empnumber3;
+    }
+
+    public void setEmpnumber3(String empnumber3) {
+        this.empnumber3 = empnumber3 == null ? null : empnumber3.trim();
+    }
+
+    public String getEmpnumber4() {
+        return empnumber4;
+    }
+
+    public void setEmpnumber4(String empnumber4) {
+        this.empnumber4 = empnumber4 == null ? null : empnumber4.trim();
+    }
+
+    public String getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(String ordertime) {
+        this.ordertime = ordertime == null ? null : ordertime.trim();
+    }
+
+    public String getCheckintime() {
+        return checkintime;
+    }
+
+    public void setCheckintime(String checkintime) {
+        this.checkintime = checkintime == null ? null : checkintime.trim();
+    }
+
+    public String getCheckouttime() {
+        return checkouttime;
+    }
+
+    public void setCheckouttime(String checkouttime) {
+        this.checkouttime = checkouttime == null ? null : checkouttime.trim();
+    }
+
+    public Integer getRoomprice() {
+        return roomprice;
+    }
+
+    public void setRoomprice(Integer roomprice) {
+        this.roomprice = roomprice;
+    }
+
+    public Integer getRoomtotalprice() {
+        return roomtotalprice;
+    }
+
+    public void setRoomtotalprice(Integer roomtotalprice) {
+        this.roomtotalprice = roomtotalprice;
+    }
+
+    public Integer getServicetotalprice() {
+        return servicetotalprice;
+    }
+
+    public void setServicetotalprice(Integer servicetotalprice) {
+        this.servicetotalprice = servicetotalprice;
+    }
+
+    public Integer getStatydays() {
+        return statydays;
+    }
+
+    public void setStatydays(Integer statydays) {
+        this.statydays = statydays;
+    }
+
+    public Integer getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(Integer orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+}

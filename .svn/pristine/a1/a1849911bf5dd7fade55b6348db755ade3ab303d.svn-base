@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function sendAjaxRequestToRoomServlet(flag,pageNo,attruCode,value) {
+        $.ajax({
+            url:"roomServlet",//要请求的服务器url
+            //这是一个对象，表示请求的参数，两个参数：method=ajax&val=xxx，服务器可以通过request.getParameter()来获取
+            //data:{method:"ajaxTest",val:value},
+            data:{flag:flag,pageNo:pageNo,attruCode:attruCode,value:value},  //这里的email对应表单中的name="email"，也是发送url中的email=value(GET方式)
+            async:true,   //是否为异步请求
+            cache:false,  //是否缓存结果
+            type:"POST", //请求方式为POST
+            dataType:"json",   //服务器返回的数据是什么类型
+            success:function(result){  //这个方法会在服务器执行成功是被调用 ，参数result就是服务器返回的值(现在是json类型)
+               var list =eval(result.list);
+                $.each(list, function(i, room) {
+                  alert(i);
+                });
+            }
+        });
+    }
+
+  
+</script>
+</head>
+<body>
+  <input  onclick='sendAjaxRequestToRoomServlet(1,1,6,0)'  type="button" value="加载数据">
+  <table id="myTable"></table>
+</body>
+</html>

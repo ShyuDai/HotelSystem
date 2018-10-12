@@ -1,0 +1,139 @@
+package com.hs.dao.impl;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.hs.dao.RoomDaoGH;
+import com.hs.entity.Room;
+import com.hs.utils.BaseDao;
+import com.hs.utils.DBConnectionUtil;
+import com.hs.utils.SQL;
+
+public class RoomDaoImplGH extends BaseDao implements RoomDaoGH {
+
+    private static String table=null;
+    //静态初始化块只会在类加载的时候加载一次,加载表名
+    static {
+        InputStream is=DBConnectionUtil.class.getClassLoader().getResourceAsStream("table.properties");
+        Properties p=new Properties();
+        try {
+            p.load(is);
+            table=p.getProperty("table_room");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public boolean save(Room room) throws SQLException {
+        boolean flag=false;
+        String sql="insert into "+table+"(roomnumber,roomtypeid,roomtypename,roomintroduce,roomstatus)"+ " values (?,?,?,?,?)";
+       int  results=this.excuteUpdate(sql,room.getRoomnumber(),room.getRoomtypeid(),room.getRoomtypename(),room.getRoomintroduce(),room.getRoomstatus());
+       if(results>0){
+           flag=true;
+       }
+        return flag;
+    }
+
+    @Override
+    public boolean delete(Room room) throws SQLException {
+        boolean flag=false;
+        String sql="delete from "+table+" where roomid= ?";
+        int results=this.excuteUpdate(sql,room.getRoomid());
+        if(results>0){
+            flag=true;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean update(Room room) throws SQLException {
+        boolean flag=false;
+        String sql="update "+table+" set roomnumber=?,roomtypeid=?,roomtypename=?,roomintroduce=?,roomstatus=? where roomid=?";
+        int results=this.excuteUpdate(sql,room.getRoomnumber(),room.getRoomtypeid(),room.getRoomtypename(),room.getRoomintroduce(),room.getRoomstatus(),room.getRoomid());
+        if(results>0){
+            flag=true;
+        }
+        return flag;
+    }
+
+    @Override
+    public Room getRoomById(int roomId) {
+        Room room=new Room();
+        ResultSet rs=null;
+        try {
+            String sql="select *from "+table+" where roomid=?";
+            rs=this.excuteQuery(sql,roomId);
+            if(rs.next()){
+                room.setRoomid(rs.getInt("roomid"));
+                room.setRoomintroduce(rs.getString("roomintroduce"));
+                room.setRoomnumber(rs.getString("roomnumber"));
+                room.setRoomstatus(rs.getInt("roomstatus"));
+                room.setRoomtypename(rs.getString("roomtypename"));
+                room.setRoomtypeid(rs.getInt("roomtypeid"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return room;
+    }
+
+
+
+    public List<Room> getRooms(int pageNo, int pageSize,int attruCode, String value) {
+        List<Room> list=new ArrayList<>();
+        ResultSet rs=null;
+        PreparedStatement pstmt=null;
+        Connection conn=null;
+        try {
+            conn=DBConnectionUtil.getConnection();
+            pstmt=conn.prepareStatement(SQL.getQuerySqlByPage(pageNo,pageSize,attruCode,value));
+            rs=pstmt.executeQuery();
+            //rs=this.excuteQuery(SQL.getQuerySql(attruCode,value,pageNo,pageSize),SQL.attruArra);
+            while (rs.next()){
+                Room room=new Room();
+                room.setRoomid(rs.getInt("roomid"));
+                room.setRoomintroduce(rs.getString("roomintroduce"));
+                room.setRoomnumber(rs.getString("roomnumber"));
+                room.setRoomstatus(rs.getInt("roomstatus"));
+                room.setRoomtypename(rs.getString("roomtypename"));
+                room.setRoomtypeid(rs.getInt("roomtypeid"));
+                list.add(room);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    @Override
+    public int getRoomsCount(int attrCode, String value) {
+        int count=0;
+        Connection conn=null;
+        PreparedStatement pstmt=null;
+        ResultSet       resultSet=null;
+        try {
+            conn=DBConnectionUtil.getConnection();
+            String sql=SQL.getQueryByCount(attrCode,value);
+            pstmt=conn.prepareStatement(sql);
+            resultSet=pstmt.executeQuery();
+            if(resultSet.next()){
+                count=resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBConnectionUtil.CloseConnection(resultSet,pstmt,conn);
+        }
+        return count;
+    }
+}

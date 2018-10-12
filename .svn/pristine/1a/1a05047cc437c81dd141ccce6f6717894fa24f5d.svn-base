@@ -1,0 +1,14 @@
+package com.hs.service;
+
+import com.hs.entity.Roomservice;
+
+/**
+ * @author liuzonghua
+ * @Package com.hs.service
+ * @Description:
+ * @date 2018/9/23 15:35
+ */
+public interface ManiyRoomServiceService {
+
+    public int saveRoomService(Roomservice roomservice);
+}

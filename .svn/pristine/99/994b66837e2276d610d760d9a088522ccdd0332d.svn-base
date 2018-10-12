@@ -1,0 +1,108 @@
+package com.hs.dao.impl;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hs.dao.OrderDaowg;
+import com.hs.entity.Room;
+import com.hs.entity.Roomtype;
+import com.hs.utils.BaseDaoImplwg;
+
+public class OrderDaowgImpl extends BaseDaoImplwg implements OrderDaowg{
+	
+	protected ResultSet rs = null;
+
+	@Override
+	public List<Roomtype> getAllRoomTypewg(String sql) {
+		List<Roomtype> list=new ArrayList<>();
+		rs=executeQuerywg(sql);
+		try {
+			while (rs.next()) {
+				Roomtype type=new Roomtype();
+				type.setRoomtypeid(rs.getInt("roomtypeid"));
+				type.setRoomtypename(rs.getString("roomtypename"));
+				type.setRoomtypeintroduce(rs.getString("roomtypeintroduce"));
+				type.setRoomtypeprice(rs.getInt("roomtypeprice"));
+				list.add(type);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Room> getAllRoomListByRoomTypeId(String sql, int roomtypeid) {
+		List<Room> roomlist=new ArrayList<>(); 
+		rs=executeQuerywg(sql, roomtypeid);
+		try {
+			while(rs.next()) {//返回：roomid,roomnumber,roomintroduce
+				Room room=new Room();
+				room.setRoomid(rs.getInt("roomid"));
+				room.setRoomnumber(rs.getString("roomnumber"));
+				room.setRoomintroduce(rs.getString("roomintroduce"));
+				roomlist.add(room);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return roomlist;
+	}
+
+	@Override
+	public Roomtype getRoomTypeByRoomTypeId(String sql, int roomtypeid) {
+		Roomtype type=null;
+		rs=executeQuerywg(sql, roomtypeid);
+		try {
+			while(rs.next()) {
+				type=new Roomtype();
+				type.setRoomtypeid(rs.getInt("roomtypeid"));
+				type.setRoomtypename(rs.getString("roomtypename"));
+				type.setRoomtypeintroduce(rs.getString("roomtypeintroduce"));
+				type.setRoomtypeprice(rs.getInt("roomtypeprice"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return type;
+	}
+
+	@Override
+	public int UpdateRoomStatusByRoomNumber(String sql, int roomstatus, String roomnumber) {
+		int result=executeUpdatewg(sql, roomstatus,roomnumber);
+		return result;
+	}
+
+	@Override
+	public int customerIsExit(String sql, String customeridcard) {
+		int count=0;
+		rs=executeQuerywg(sql, customeridcard);
+		try {
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public int addCustomerInfo(String sql, String customername, String customersex, String customeridcard,
+			String customerphone) {
+		return executeUpdatewg(sql, customername, customersex, customeridcard, customerphone);
+	}
+
+	@Override
+	public int OrderRoomServletwg(String sql, int orderid, String customername, String customerphone,
+			String customeridcard, String customersex, String roomnumber, int roomtypeid, String roomtypename,
+			String empnumber1, String ordertime, int roomprice, int status) {
+		//返回
+		return executeUpdatewg(sql, orderid, customername, customerphone, customeridcard,
+				 customersex, roomnumber, roomtypeid, roomtypename, empnumber1,
+				 ordertime, roomprice, status);
+	}
+
+}

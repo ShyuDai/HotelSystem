@@ -1,0 +1,142 @@
+.zhezhao
+{
+  width: 100%;
+  height: 855px;
+  background:rgba(0,0,0,.4);
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 3;
+  display: none;
+}
+
+.saveEmployee
+{
+  width: 100%;
+  height: 855px;
+  background:rgba(0,0,0,.4);
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 3;
+  display: none;
+}
+
+.close
+{
+  display: block;
+  position: absolute;
+  height:28px;
+  width: 28px;
+  
+  background: url(../img/close.png);
+  background-size: cover;
+  right: -12px;
+  top: -12px;
+  cursor: pointer;
+}
+.renyuan-op
+{
+  margin:0 auto;
+  margin-top:50px;
+  width: 600px;
+  height:750px;
+  background:#fff;
+  box-shadow: 0 5px 5px #777;
+  position: relative;
+  display: none;
+  z-index: 5;
+  display: none;
+}
+
+.employee-op
+{
+  margin:0 auto;
+  margin-top:50px;
+  width: 600px;
+  height:750px;
+  background:#fff;
+  box-shadow: 0 5px 5px #777;
+  position: relative;
+  display: none;
+  z-index: 5;
+  display: none;
+}
+.employee-op span
+{
+  font-size: 16px;
+  color:#3399CC;
+}
+.employee-op input
+{
+	border:1px solid #111;
+}
+.employee-op #btn_add_employee
+{
+	display: block;
+  width: 80px;
+  height:40px;
+  margin:0 auto;
+  border-radius:5px;
+  border:none;
+  background: #3399CC;
+  outline: none;
+  cursor: pointer;
+  color:#fff;
+  font-size: 16px;
+  margin-top:20px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.renyuan-op span
+{
+  font-size: 16px;
+  color:#3399CC;
+}
+.renyuan-op input
+{
+	border:1px solid #111;
+}
+.renyuan-op #btnNum-renyuan
+{
+	display: block;
+  width: 80px;
+  height:40px;
+  margin:0 auto;
+  border-radius:5px;
+  border:none;
+  background: #3399CC;
+  outline: none;
+  cursor: pointer;
+  color:#fff;
+  font-size: 16px;
+  margin-top:20px;
+  line-height: 40px;
+  text-align: center;
+}
+.renyuan-i1,.renyuan-i2
+{
+  width: 200px;
+  height:40px;
+  margin:0 auto;
+  /*line-height:50px;*/
+  color:red;
+  font-size: 16px;
+  /*padding-top: 10px;*/
+}
+.renyuan-i1
+{
+  margin-top:10px;
+}
+.renyuan-tittle
+{
+  width: 100%;
+  height:50px;
+  text-align: left;
+  padding-left: 40px;
+  line-height:50px;
+  color: #fff;
+  font-size: 16px;
+  background:#3399cc;
+}

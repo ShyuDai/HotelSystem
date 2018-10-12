@@ -1,0 +1,57 @@
+package com.hs.web.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSON;
+import com.hs.entity.Orderinfo;
+import com.hs.service.OrderServiceYzw;
+import com.hs.service.impl.OrderServiceYzwImpl;
+
+@WebServlet("/HistoryServlet")
+public class HistoryServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // 设置编码
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		String str = request.getParameter("select");
+		String starttime = request.getParameter("starttime");
+		String endtime = request.getParameter("endtime"); 
+		int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		int pageSize = 10;
+		PrintWriter out =response.getWriter();
+		OrderServiceYzw serviceYzw = new OrderServiceYzwImpl();
+		if(str.equals("")) {
+			List<Orderinfo> histories=serviceYzw.getHistoryOrderinfoByStatus(1,pageNo,pageSize,starttime,endtime);
+			String json = JSON.toJSONString(histories);
+			System.out.println(json);
+			out.write(json);
+		}else {
+			Orderinfo orderinfo = serviceYzw.getOrderInfoByNameOrIdcard(str);
+			String json = JSON.toJSONString(orderinfo);
+			System.out.println(json);
+			out.write(json);
+		}
+		
+		out.flush();
+		out.close();
+		
+	}
+
+}

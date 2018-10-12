@@ -1,0 +1,37 @@
+package com.hs.web.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.hs.service.OrderServicewg;
+import com.hs.service.impl.OrderServicewgImpl;
+
+
+@WebServlet("/CheckInwgServlet")
+public class CheckInwgServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public CheckInwgServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		OrderServicewg os=new OrderServicewgImpl();
+		//入住操作
+		
+		
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

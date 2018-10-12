@@ -1,0 +1,34 @@
+
+前台界面：首先获取所有房间的信息传递给界面，可以点击刷新。
+房间json数据格式：
+[
+ Room [roomid=1, roomnumber=1001, roomtypeid=1, roomtypename=标准大床房, roomintroduce=一张大床，wifi，热水器等, roomstatus=0], 
+ Room [roomid=2, roomnumber=1002, roomtypeid=2, roomtypename=豪华商务标间, roomintroduce=双床，wifi等, roomstatus=0]
+]
+空闲房间：可以点击预定和入住功能。
+已入住房间：可以点击退房和换房功能。
+1.预定功能：
+点击空闲房间，将房间编号赋值给隐藏域，弹出选择框，选择预定功能，点击确定，弹出输入框，输入顾客信息（顾客姓名、性别（单选按钮）、身份证号、电话号码），点击预定，房间预定成功！
+2.入住功能：
+点击空闲房间，将房间编号赋值给隐藏域，弹出选择框，选择入住功能，点击确定，弹出输入框，输入顾客信息（顾客姓名、性别（单选按钮）、身份证号、电话号码），点击入住，顾客入住成功！
+3.换房功能：
+点击已入住房间，将房间编号赋值给隐藏域，弹出选择框，选择换房功能，点击确定，弹出输入框，下拉列表显示房间类型和房间编号（级联），
+选择房间编号，点击换房，顾客换房成功！
+房间类型json数据格式：
+[
+Roomtype [roomtypeid=1, roomtypename=标准大床房, roomtypeintroduce=一张大床，wifi，热水器等, roomtypeprice=200], 
+Roomtype [roomtypeid=2, roomtypename=豪华商务标间, roomtypeintroduce=双床，wifi等, roomtypeprice=300], 
+Roomtype [roomtypeid=3, roomtypename=温馨家庭间, roomtypeintroduce=多张床，wifi，房间35平米, roomtypeprice=308], 
+Roomtype [roomtypeid=4, roomtypename=豪华娱乐间, roomtypeintroduce=大床2米，房间45平米，wifi, roomtypeprice=628]
+]
+房间json数据格式：
+[Room [roomid=1, roomnumber=1001, roomtypeid=1, roomtypename=标准大床房, roomintroduce=一张大床，wifi，热水器等, roomstatus=0]]
+4.退房功能：
+点击已入住房间，将房间编号赋值给隐藏域，弹出选择框，选择退房功能，点击确定，弹出对话框，
+显示顾客详细消费信息（房间单价、开始入住时间、入住天数、房费、服务消费内容、服务消费金额、总计消费金额），点击确认，退房成功！
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+package com.hs.utils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.junit.Test;
+
+public class DateFormatDefinition {
+	
+	/**
+	 * 自定义日期格式
+	 * @return
+	 */
+	public static String SimpleDateFormatwg() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		Date date=new Date();// new Date()为获取当前系统时间
+		String time=df.format(date);//顾客预定时的系统时间
+		return time;
+	}
+	
+	/**
+	 * 计算两个时间之间
+	 * 返回相差天数
+	 */
+	@Test
+	public static long statydays(String checkintime,String checkouttime){
+		long days=0;
+        try {
+        	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        	//跨年不会出现问题
+        	//如果时间为：差值为 0，则默认加1
+        	Date fDate=sdf.parse(checkintime);
+        	Date oDate=sdf.parse(checkouttime);
+        	days=(oDate.getTime()-fDate.getTime())/(1000*3600*24);
+        	if(days>0) {
+        		return days;
+        	}else {
+        		days=days+1;
+        		return days;
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return days;
+    }
+	
+
+}

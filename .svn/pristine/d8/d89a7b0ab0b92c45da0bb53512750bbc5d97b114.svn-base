@@ -1,0 +1,79 @@
+//追加盒子函数
+$(function(){
+	function verify(){	
+		//解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");
+		//解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");
+		var url = "ToOrderRoomServletwg";
+		$.get(url,null,function(data){
+			data = $.parseJSON(data);
+			for(i in data){
+//				var innerString = "<div><b>" + data[i].roomnumber + "</b></div>";
+				var innerString = "<div><span></span><b>" + data[i].roomnumber + "</b><input type='hidden' value='"+data[i].roomstatus+"'></div>";
+				$(".reception-table").append(innerString);
+//				房间状态：
+//				0--空闲，
+//				1--预定，
+//				2--入住，
+//				3--打扫中，
+//				4--维修中，
+//				5--接待中。
+				var d = data[i].roomstatus;
+				switch (d){
+					case 0:
+						$("#table div:eq("+i+")").addClass('kongxian');
+						break;
+					case 1:
+						$("#table div:eq("+i+")").addClass('yuding');
+						break;
+					case 2:
+						$("#table div:eq("+i+")").addClass('ruzhu');
+						break;
+					case 3:
+						$("#table div:eq("+i+")").addClass('clean');
+						break;
+					case 4:
+						$("#table div:eq("+i+")").addClass('weixiu');
+						break;
+					case 5:
+						$("#table div:eq("+i+")").addClass('jiedai');
+						break;	
+				}
+			};
+		});
+	};
+	verify();	
+//	$('#table div').on('click', function() {
+//		var obj = $(this).val;
+////		alert(1);
+//		if(obj==0){
+//			//空闲，可以预定、入住
+//			$(".zhezhao").show();
+//			$(".ruzhu").show();
+//		}
+//		else if(obj==1){
+//			//预定，可以入住、换房、取消
+//			
+//		}else if(obj==2){
+//			//入住，可以退房
+//		}
+//	});
+$("#table").on('click','.kongxian',function(){
+	$(".zhezhao").show();
+	$(".kongxian-op").show();
+});
+$("#table").on('click','.ruzhu',function(){
+	$(".zhezhao").show();
+	$(".ruzhu-op").show();
+});
+$("#table").on('click','.yuding',function(){
+	$(".zhezhao").show();
+	$(".yuding-op").show();
+});
+$(".close").on('click', function() {
+	$(".zhezhao").hide();
+//	$(".zhezhao2").hide();
+	$(".ruzhu-op").hide();
+	$(".yuding-op").hide();
+	$(".kongxian-op").hide();
+});
+});

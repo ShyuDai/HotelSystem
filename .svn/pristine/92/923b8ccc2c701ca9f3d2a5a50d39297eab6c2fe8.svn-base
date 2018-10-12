@@ -1,0 +1,66 @@
+package com.hs.service.impl;
+
+import java.util.List;
+
+import com.hs.dao.OrderDaowg;
+import com.hs.dao.impl.OrderDaowgImpl;
+import com.hs.entity.Room;
+import com.hs.entity.Roomtype;
+import com.hs.service.OrderServicewg;
+
+public class OrderServicewgImpl implements OrderServicewg {
+	
+	private OrderDaowg od=new OrderDaowgImpl();
+
+	@Override
+	public List<Roomtype> getAllRoomTypewg() {
+		String sql="select * from roomtype";
+		return od.getAllRoomTypewg(sql);
+	}
+
+	@Override
+	public List<Room> getAllRoomListByRoomTypeId(int roomtypeid) {
+		String sql="select roomid,roomnumber,roomintroduce from room where roomstatus=0 and roomtypeid=?";
+		return od.getAllRoomListByRoomTypeId(sql,roomtypeid);
+	}
+
+	@Override
+	public Roomtype getRoomTypeByRoomTypeId(int roomtypeid) {
+		String sql="select * from roomtype where roomtypeid=?";
+		return od.getRoomTypeByRoomTypeId(sql,roomtypeid);
+	}
+
+	@Override
+	public int UpdateRoomStatusByRoomNumber(int roomstatus, String roomnumber) {
+		String sql="update room set roomstatus=? where roomnumber=?";
+		return od.UpdateRoomStatusByRoomNumber(sql,roomstatus,roomnumber);
+	}
+
+	@Override
+	public int customerIsExit(String customeridcard) {
+		String sql="select count(*) from customer where idcard=?";
+		return od.customerIsExit(sql,customeridcard);
+	}
+
+	@Override
+	public int addCustomerInfo(String customername, String customersex, String customeridcard, String customerphone) {
+		String sql="insert into customer(name,sex,idcard,phone) value(?,?,?,?)";
+		return od.addCustomerInfo(sql, customername,  customersex,  customeridcard,  customerphone);
+	}
+
+	@Override
+	public int OrderRoomServletwg(int orderid, String customername, String customerphone, String customeridcard,
+			String customersex, String roomnumber, int roomtypeid, String roomtypename, String empnumber1,
+			String ordertime, int roomprice, int status) {
+		String sql="insert into order(orderid,customername,customerphone,customeridcard,customersex,roomnumber,"
+				+ "roomtypeid,roomtypename,empnumber1,ordertime,roomprice,status) "
+				+ "value(?,?,?,?,?,?,?,?,?,?,?,?)";
+		return od.OrderRoomServletwg(sql, orderid, customername, customerphone, customeridcard,
+			 customersex, roomnumber, roomtypeid, roomtypename, empnumber1,
+			 ordertime, roomprice, status);
+	}
+
+	
+	
+
+}

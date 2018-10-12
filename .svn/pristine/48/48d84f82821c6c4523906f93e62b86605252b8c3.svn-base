@@ -1,0 +1,27 @@
+package com.hs.service.impl;
+
+import com.hs.dao.ManiyRoomServiceDao;
+import com.hs.dao.RoomTypeDaoGH;
+import com.hs.dao.impl.ManiyRoomServiceDaoImpl;
+import com.hs.dao.impl.RoomTypeDaoImplGH;
+import com.hs.entity.Roomservice;
+import com.hs.service.ManiyRoomServiceService;
+
+/**
+ * @author liuzonghua
+ * @Package com.hs.service.impl
+ * @Description:
+ * @date 2018/9/23 15:37
+ */
+public class ManiyRoomServiceServiceImpl implements ManiyRoomServiceService {
+    ManiyRoomServiceDao maniyRoomServiceDao =new ManiyRoomServiceDaoImpl();
+
+    @Override
+    public int saveRoomService(Roomservice roomservice) {
+
+        RoomTypeDaoGH roomTypeDaoGH =new RoomTypeDaoImplGH();
+        //通过类型id获取类型名称，并添加到roomservice
+        //roomservice.setRoomtypename(roomTypeDaoGH.getRoomType(roomservice.getRoomtypeid()).getRoomtypename());
+        return maniyRoomServiceDao.saveRoomService(roomservice);
+    }
+}

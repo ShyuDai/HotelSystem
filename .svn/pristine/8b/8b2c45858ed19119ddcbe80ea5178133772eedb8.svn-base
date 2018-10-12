@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/employee.css">
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+ <script src="js/jquery.min.js" type="text/javascript"></script>
+ <script src="js/employee.js" type="text/javascript"></script>
+ 
+    <!-- <script src="assets/js/echarts.min.js"></script> -->
+    <style>
+        body{overflow:scroll;}
+        body{overflow-y:scroll;}
+    </style>
+</head>
+
+<body data-type="Room-service.html">
+
+
+       <header class="am-topbar am-topbar-inverse admin-header">
+        <div class="am-topbar-brand">
+            <a href="javascript:;" class="tpl-logo">
+                <img src="assets/img/logo.png" alt="">
+            </a>
+        </div>
+        <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+        </div>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">                 
+                <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                    <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                        <span class="tpl-header-list-user-nick">酒店管理员</span><span class="tpl-header-list-user-ico"> <img src="assets/img/user01.png"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <!-- <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li> -->
+                        <!-- <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li> -->
+                        <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li> -->
+            </ul>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+
+
+        <div class="tpl-left-nav tpl-left-nav-hover">
+            <div class="tpl-left-nav-title">
+                请进入相应身份模块
+            </div>
+            <div class="tpl-left-nav-list">
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i class="am-icon-home"></i>
+                            <span>&nbsp;首页</span>
+                        </a>
+                    </li>
+                    <!-- <li class="tpl-left-nav-item">
+                        <a href="chart.html" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-bar-chart"></i>
+                            <span>数据表</span>
+                        </a>
+                    </li>
+ -->
+                    <li class="tpl-left-nav-item">
+                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
+                            <i class="am-icon-user-secret"></i>
+                            <span>&nbsp;经理界面</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        <ul class="tpl-left-nav-sub-menu"   style="display: block;">
+                            <li>
+                                <a href="Customer-service.html">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>顾客查询</span>
+                                </a>
+								<a href="Room-service.html">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>房间查询</span>
+                                </a>
+                                <a href="Employee-service.html"  class="active">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>人员调控</span>
+                                </a>  
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="tpl-left-nav-item">
+                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-user"></i>
+                            <span>&nbsp;财务界面</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        <ul class="tpl-left-nav-sub-menu">
+                            <li>
+                                <a href="HistoryServlet?currentPage=1&flag=1">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>历史用户信息</span>
+                                </a>
+
+                                <a href="OrderInfoYzwServlet?currentPage=1&flag=4">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>盈利状况</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="tpl-left-nav-item">
+                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-users"></i>
+                            <span>后勤界面</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        <ul class="tpl-left-nav-sub-menu">
+                            <li>
+                                <a href="maniyGetRoomServlet">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>清洁房间</span>
+                                </a>
+
+                                <a href="maniyGetRoomServiceServlet">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>客房服务</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="tpl-left-nav-item">
+                        <a href="Reception.html" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-table"></i>
+                            <span>&nbsp;前台界面</span>
+                            <!-- <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i> -->
+                        </a>
+                        <!-- <ul class="tpl-left-nav-sub-menu" style="display: block;">
+                            <li>
+                                <a href="#">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>预定</span>
+                                </a>
+
+                                <a href="#">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>入住</span>
+                                </a>
+                                <a href="#">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>换房</span>
+                                </a>
+                                <a href="#">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>退房</span>
+                                </a>        
+                            </li>                            
+                        </ul> -->
+                    </li>
+
+                    
+                    <!-- <li class="tpl-left-nav-item">
+                        <a href="login.html" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-key"></i>
+                            <span>登录</span>
+
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+               <div>
+                <a id="addEmployee">添加员工</a>
+               </div>
+               <div>
+                 <label>性别：</label>
+                 <select id="sex" onchange="searchEmployeeBySex(1,$(this).find('option:selected').val())" style="width: 120px;">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                 </select>
+                 
+                  <label>职位：</label>
+                  <select id="role" onchange="searchEmployeeByRole(1,$(this).find('option:selected').val())">
+                  </select>
+                  
+                  <label>所属部门：</label>
+                  <select id="department" onchange="searchEmployeeByDepartment(1,$(this).find('option:selected').val())">
+                  </select>
+                  
+                   
+                  <label>级别：</label>
+                  <select id="level" onchange="searchEmployeeByLevel(1,$(this).find('option:selected').val())" style="width: 120px;">
+                      <option value="1">1级</option>
+                      <option value="2">2级</option>
+                      <option value="3">3级</option>
+                      <option value="4">4级</option>
+                      <option value="5">5级</option>
+                  </select>
+                  
+                  <label>部门经理：</label>
+                  <select id="depManager" onchange="searchEmployeeByDepManager(1,$(this).find('option:selected').val())">
+                  
+                  </select>
+                  
+                  
+                  <label>年龄：</label>
+                  <select id="empAge" onchange="searchEmployeeByEmpAgeInterval(1,$(this).find('option:selected').val())">
+                       <option value="18,20">18-20岁</option>
+                       <option value="20,25">20-25岁</option>
+                       <option value="25,30">25-30岁</option>
+                       <option value="30,35">30-35岁</option>
+                       <option value="35,40">35-40岁</option>
+                       <option value="40,45">40-45岁</option>
+                       <option value="45,50">45-50岁</option>
+                       <option value="50,55">50-55岁</option>
+                       <option value="55,60">55-60岁</option>
+                       <option value="60,100">60岁以上</option>
+                  </select><br>
+                  
+                  <label>工龄：</label>
+                  <select id="empWorkingYears" onchange="searchEmployeeByEmpWorkingYearsInterval(1,$(this).find('option:selected').val())">
+                       <option value="0,1">1年以下</option>
+                       <option value="1,2">1-2年</option>
+                       <option value="3,5">3-5年</option>
+                       <option value="5,10">5-10年</option>
+                       <option value="10,20">10-20年</option>
+                       <option value="20,50">20-50年</option>
+                       <option value="50,100">50年以上</option>
+                  </select>
+                  
+                  
+                      
+                  <label>月薪：</label>
+                  <select id="monthPay" onchange="searchEmployeeByMonthPayInterval(1,$(this).find('option:selected').val())">
+                       <option value="1000,2000">1000-2000</option>
+                       <option value="2000,5000">2000-5000</option>
+                       <option value="5000,10000">5000-10000</option>
+                       <option value="10000,20000">10000-20000</option>
+                       <option value="20000,50000">20000-50000</option>
+                       <option value="50000,100000">50000-100000</option>
+                       <option value="100000,200000">100000-200000</option>
+                       <option value="200000,1000000">200000以上</option>
+                  </select>
+                  
+                  
+                 <label>入职日期：从</label>
+                 <input id="startDate" type="date"/>
+                 <label>到</label>
+                 <input id="endDate"   type="date"/><input id="searchByDate" value="查询" type="button" style="background-color: red"/>
+                 
+                 
+                   
+                 <label>综合搜索：</label>
+                 <input id="key" type="text" onblur="searchEmployeeByKey(1,$(this).val())"/>
+                 
+               </div>
+               
+               
+               
+               <div><table id="myTable" style="width: 1500px;"></table></div>
+            </div>
+          
+            <div id="showPage" style="margin-left: 500px"></div>
+          
+        </div>
+    </div>
+    
+    
+          <div class="zhezhao">
+	      <div class="renyuan-op" >
+    
+	              <div class="renyuan-tittle">
+	                <span class="close"></span>
+	                       请输入员工信息
+	              </div>
+	              <div class="renyuan-i1"><span>员工姓名:</span><input id="upEmpName" type="text" /></div>
+
+	              <div class="renyuan-i1"><span>员工性别</span>
+	              							男：<input id="meal"  name="sex" type="radio" value="男" checked="checked" />
+	              							女：<input id="femeal"  name="sex" type="radio"  value="女" />
+	              </div><br>
+	              <div class="renyuan-i1"><span>员工年龄：</span><input id="upEmpAge" type="text" /></div>
+	            
+	              <div class="renyuan-i1"><span>员工号：</span><input id="upEmpNo" type="text" /></div>
+	              <div class="renyuan-i1"><span>备注:</span><input id="upEmpRemark" type="text"/></div>
+	              
+	              <div class="renyuan-i1">
+	              <span>职位:</span>
+	              <!-- //<input id="upRoleName" type="text" /> -->
+	                <select id="upRoleName">
+	                </select>
+	              </div>
+	              
+	              <div class="renyuan-i1">
+	              <span>所属部门:</span>
+	              <!-- <input id="upDepName" type="text" /> onchange="changeDepManagerById($(this))"-->
+	              
+	                 <select id="upDepName" >
+	                </select>
+	              </div>
+	              
+	              <div class="renyuan-i1"><span>部门经理:</span><input id="upDepManager" disabled="disabled" type="text" /></div>
+	              <button type="submit" id="btnNum-renyuan">保存</button>
+            </div>
+           </div>
+           
+           
+         <!--   <div class="zhezhao">
+	      <div class="renyuan-op" >
+    
+	              <div class="renyuan-tittle">
+	                <span class="close"></span>
+	                       请输入员工信息
+	              </div>
+	              <div class="renyuan-i1"><span>员工姓名:</span><input id="addEmpName" type="text" /></div>
+
+	              <div class="renyuan-i1"><span>员工性别</span>
+	              							男：<input id="meal"  name="sex" type="radio" value="男" checked="checked" />
+	              							女：<input id="femeal"  name="sex" type="radio"  value="女" />
+	              </div><br>
+	              <div class="renyuan-i1"><span>员工年龄：</span><input id="addEmpAge" type="text" /></div>
+	            
+	              <div class="renyuan-i1"><span>员工号：</span><input id="addEmpNo" type="text" /></div>
+	              <div class="renyuan-i1"><span>备注:</span><input id="addEmpRemark" type="text"/></div>
+	              
+	              <div class="renyuan-i1">
+	              <span>职位:</span>
+	              //<input id="addRole" type="text" />
+	                <select id="addRoleName">
+	                </select>
+	              </div>
+	              
+	              <div class="renyuan-i1">
+	              <span>所属部门:</span>
+	              <input id="addDepName" type="text" />
+	                 <select id="addDep">
+	                </select>
+	              </div>
+	              
+	              <div class="renyuan-i1"><span>部门经理:</span><input id="addDepManager" disabled="disabled" type="text" /></div>
+	              <button type="submit" id="btn_save_employee">保存</button>
+            </div>
+           </div> -->
+           
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/app.js"></script>
+   <!--  <script src="assets/js/employee.min.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+package com.hs.web.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ToOrderRoomServletwg")
+public class ToOrderRoomServletwg extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public ToOrderRoomServletwg() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		//跳转到预定房间jsp界面
+		//请求转发
+		request.getRequestDispatcher("").forward(request, response);
+		
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

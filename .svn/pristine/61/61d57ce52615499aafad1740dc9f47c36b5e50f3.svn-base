@@ -1,0 +1,103 @@
+package com.hs.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import com.alibaba.fastjson.JSON;
+import com.hs.dao.OrderDaoYzw;
+import com.hs.dao.impl.OrderDaoYzwImpl;
+import com.hs.entity.Orderinfo;
+import com.hs.entity.PageHelperDataResult;
+import com.hs.service.OrderServiceYzw;
+
+public class OrderServiceYzwImpl implements OrderServiceYzw {
+	OrderDaoYzw dao= new OrderDaoYzwImpl();
+
+	@Override
+	public List<Orderinfo> getHistoryOrderinfoByStatus(int status,int pageNo,int pageSize,String starttime,String endtime) {
+		List<Orderinfo> list= dao.getHistoryOrderinfoByStatus(status,pageNo,pageSize,starttime,endtime);
+		List<Orderinfo> newlist =new ArrayList<>();
+		int start = (pageNo - 1) * pageSize;
+		int end = pageSize+start;
+		if(end>list.size()) {
+			end=list.size();
+		}
+		Orderinfo orderinfo=new Orderinfo();
+		for(int i=start;i<end;i++) {
+			orderinfo=list.get(i);
+			newlist.add(orderinfo);
+		}
+		return newlist;
+	}
+
+	@Override
+	public List<Orderinfo> getOrderinfoByTime(int pageNo,int pageSize,String starttime, String endtime) {
+		List<Orderinfo> list = dao.getOrderinfoByTime(pageNo,pageSize,starttime, endtime);
+		List<Orderinfo> newlist =new ArrayList<>();
+		int start = (pageNo - 1) * pageSize;
+		int end = pageSize+start;
+		if(end>list.size()) {
+			end=list.size();
+		}
+		Orderinfo orderinfo=new Orderinfo();
+		for(int i=start;i<end;i++) {
+			orderinfo=list.get(i);
+			newlist.add(orderinfo);
+		}
+		return newlist;
+	}
+
+	@Override
+	public List<Orderinfo> getOrderinfoByTimeAndStatus(int pageNo,int pageSize,String starttime, String endtime, int status) {
+		List<Orderinfo> list = dao.getOrderinfoByTimeAndStatus(pageNo,pageSize,starttime, endtime, status);
+		List<Orderinfo> newlist =new ArrayList<>();
+		int start = (pageNo - 1) * pageSize;
+		int end = pageSize+start;
+		if(end>list.size()) {
+			end=list.size();
+		}
+		Orderinfo orderinfo=new Orderinfo();
+		for(int i=start;i<end;i++) {
+			orderinfo=list.get(i);
+			newlist.add(orderinfo);
+		}
+		return newlist;
+	}
+
+	@Override
+	public List<Orderinfo> getAllOrderinfo() {
+		return dao.getAllOrderinfo();
+	}
+
+	@Override
+	public Orderinfo getOrderInfoByNameOrIdcard(String str) {
+		Orderinfo orderinfo = dao.getOrderInfoByNameOrIdcard(str);
+		return orderinfo;
+	}
+
+    @Test
+    public void test1() 
+    {
+    	int status = 1;
+    	int pageNo = 1;
+    	int pageSize = 10;
+    	String starttime = "2018-09-10";
+    	String endtime = "2018-09-25";
+    	
+    	List<Orderinfo> orderinfos = dao.getHistoryOrderinfoByStatus(status, pageNo, pageSize, starttime, endtime);
+    	String json = JSON.toJSONString(orderinfos);
+    	System.out.println(json);
+    }
+    @Test
+    public void test2() 
+    {
+    	String str="ad";
+    	
+    	Orderinfo orderinfo = dao.getOrderInfoByNameOrIdcard(str);
+    	String json = JSON.toJSONString(orderinfo);
+    	System.out.println(json);
+    }
+
+}

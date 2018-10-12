@@ -1,0 +1,50 @@
+package com.hs.dao.impl;
+
+import com.hs.dao.ManiyRoomServiceDao;
+import com.hs.entity.Roomservice;
+import com.hs.service.ManiyRoomService;
+import com.hs.utils.DBConnectionUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ * @author liuzonghua
+ * @Package com.hs.dao.impl
+ * @Description:
+ * @date 2018/9/23 15:06
+ */
+public class ManiyRoomServiceDaoImpl implements ManiyRoomServiceDao {
+    @Override
+    public int saveRoomService(Roomservice roomservice) {
+        int flag =0;
+        Connection conn=null;
+        PreparedStatement ps=null;
+
+
+        try {
+            conn= DBConnectionUtil.getConnection();
+            String sql ="INSERT INTO roomservice (name,roomnumber,roomtypeid,roomtypename,servicename,servicetotalprice,servicetime" +
+                    ",empnumber) VALUES (?,?,?,?,?,?,?,?)";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,roomservice.getName());
+            ps.setString(2,roomservice.getRoomnumber());
+            ps.setInt(3,roomservice.getRoomtypeid());
+            ps.setString(4,roomservice.getRoomtypename());
+            ps.setString(5,roomservice.getServicename());
+            ps.setInt(6,roomservice.getServicetotalprice());
+            ps.setString(7,roomservice.getServicetime());
+            ps.setString(8,roomservice.getEmpnumber());
+            int rows=ps.executeUpdate();
+            if (rows>0){
+                flag=1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBConnectionUtil.CloseConnection(null,ps,conn);
+        }
+        return flag;
+    }
+}

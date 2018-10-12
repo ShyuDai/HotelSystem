@@ -1,0 +1,62 @@
+package com.hs.utils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class BaseDao {
+	protected boolean flag = false;
+	protected Connection conn = null;
+	protected PreparedStatement st = null;
+	protected ResultSet rs = null;
+
+    public int excuteUpdate(String sql,Object ...params) {//三个...表示该方法有0个或多个任意类型的参数
+        int results=0;
+        conn= DBConnectionUtil.getConnection();
+		try {
+			st = conn.prepareStatement(sql);
+			for(int i=0;i<params.length;i++){
+				st.setObject(i+1,params[i]);
+	        }
+	        results=st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnectionUtil.CloseConnection(rs, st, conn);
+		}
+        
+     return results;
+    }
+
+    public ResultSet excuteQuery(String sql,Object ...params) {
+        conn= DBConnectionUtil.getConnection();
+		try {
+			System.out.println("sql===="+sql);
+			st = conn.prepareStatement(sql);
+			 for(int i=0;i<params.length;i++){
+		            st.setObject(i+1,params[i]);
+		        }
+		    rs=st.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+	        	//DBConnectionUtil.CloseConnection(rs, st, conn);
+		}
+
+      return rs;
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+

@@ -1,0 +1,29 @@
+package com.hs.test;
+
+import com.hs.dao.impl.*;
+import com.hs.entity.Room;
+import com.hs.service.RoomServiceGH;
+import com.hs.utils.SQL;
+
+public class Test01 {
+    public static String [] attruArra={"roomid","roomnumber","roomtypid","roomtypename","roomintroduce","roomstatus"};
+
+    public static void main(String s[]){
+        int attrCode=0;
+        String value="标准";
+
+        System.out.println("查询数量的sql语句："+SQL.getQueryByCount(attrCode,value));
+        System.out.println("查询集合的-->sql语句："+ SQL.getQuerySqlByPage(1,12,attrCode,value));
+
+
+        RoomServiceGH service=new RoomServiceGH();
+
+        System.out.println(value+"的数量-->"+service.getRoomsCount(attrCode,value));
+        for(Room room:service.getRoomsByPage(1,12,attrCode,value)){
+            System.out.println(room.toString());
+        }
+    }
+
+
+
+}

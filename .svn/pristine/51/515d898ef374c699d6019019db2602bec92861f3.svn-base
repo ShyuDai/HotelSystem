@@ -1,0 +1,27 @@
+package com.hs.dao;
+
+import java.util.List;
+
+import com.hs.entity.Room;
+import com.hs.entity.Roomtype;
+
+public interface OrderDaowg {
+
+	List<Roomtype> getAllRoomTypewg(String sql);
+
+	List<Room> getAllRoomListByRoomTypeId(String sql, int roomtypeid);
+
+	Roomtype getRoomTypeByRoomTypeId(String sql, int roomtypeid);
+
+	int UpdateRoomStatusByRoomNumber(String sql, int roomstatus, String roomnumber);
+
+	int customerIsExit(String sql, String customeridcard);
+
+	int addCustomerInfo(String sql, String customername, String customersex, String customeridcard,
+			String customerphone);
+
+	int OrderRoomServletwg(String sql, int orderid, String customername, String customerphone, String customeridcard,
+			String customersex, String roomnumber, int roomtypeid, String roomtypename, String empnumber1,
+			String ordertime, int roomprice, int status);
+
+}

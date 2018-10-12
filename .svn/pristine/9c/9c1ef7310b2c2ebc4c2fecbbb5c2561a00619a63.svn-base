@@ -1,0 +1,26 @@
+package com.hs.service;
+
+import java.util.List;
+
+import com.hs.entity.Room;
+import com.hs.entity.Roomtype;
+
+public interface OrderServicewg {
+
+	List<Roomtype> getAllRoomTypewg();
+
+	List<Room> getAllRoomListByRoomTypeId(int roomtypeid);
+
+	Roomtype getRoomTypeByRoomTypeId(int roomtypeid);
+
+	int UpdateRoomStatusByRoomNumber(int roomstatus, String roomnumber);
+
+	int customerIsExit(String customeridcard);
+
+	int addCustomerInfo(String customername, String customersex, String customeridcard, String customerphone);
+
+	int OrderRoomServletwg(int orderid, String customername, String customerphone, String customeridcard,
+			String customersex, String roomnumber, int roomtypeid, String roomtypename, String empnumber1,
+			String ordertime, int roomprice, int status);
+
+}

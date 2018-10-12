@@ -1,0 +1,54 @@
+package com.hs.web.servlet;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.junit.Test;
+
+import com.hs.entity.Room;
+import com.hs.service.OrderServicewg;
+import com.hs.service.impl.OrderServicewgImpl;
+import com.hs.utils.PrintWriterwg;
+
+@WebServlet("/ToOrderRoomServletwg")
+public class ToOrderRoomServletwg extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public ToOrderRoomServletwg() {
+        super();
+    }
+    
+    @Test
+    public void sysotest() {
+    	OrderServicewg os=new OrderServicewgImpl();
+    	List<Room> roomlist=os.getAllRoomListwg();
+    	System.out.println(roomlist);
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		OrderServicewg os=new OrderServicewgImpl();
+		//获取所有房间的信息传递给界面
+		//房间编号，房间状态码
+		List<Room> roomlist=os.getAllRoomListwg();
+		//返回json
+		PrintWriterwg.out(response, roomlist);
+		
+		//跳转到预定房间jsp界面
+		//请求转发
+//		request.getRequestDispatcher("").forward(request, response);
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

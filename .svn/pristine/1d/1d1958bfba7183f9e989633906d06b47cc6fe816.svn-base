@@ -1,0 +1,167 @@
+package com.hs.utils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class SQL {
+
+   /* private int rooid;
+    private String roomnumber;
+    private int roomtypid;
+    private String roomtypename;
+    private String roomintroduce;
+    private int    roomstatues;*/
+
+    private static String table=null;
+    
+    
+    public static String [] attruArra={"roomid","roomnumber","roomtypeid","roomtypename","roomintroduce","roomstatus"};
+    //静态初始化块只会在类加载的时候加载一次,加载表名
+    static {
+        InputStream is=DBConnectionUtil.class.getClassLoader().getResourceAsStream("table.properties");
+        Properties p=new Properties();
+        try {
+            p.load(is);
+            table=p.getProperty("table_room");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String getQueryByCount(int attrCode,String value){
+        String sql="select count(*) count from "+table;
+        switch (attrCode){//1-6表示查询根据6个属性查询
+            case 0://表示查询数据表总记录数
+            	
+             	break;
+            case 1:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[0] + "=" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[0] + "='" +value+"'";
+                }
+                break;
+            case 2:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[1] + "=" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[1] + "='%" +value+"%'";
+                }
+                break;
+            case 3:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[2] + "=" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[2] + "='" +value+"'";
+                }
+                break;
+
+            case 4:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[3] + " =" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[3] + " like '%" +value+"%'";
+                }
+                break;
+
+
+            case 5:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[4] + "=" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[4] + " like '%" +value+"%'";
+                }
+                break;
+
+            case 6:
+                if(isNum(value)) {
+                    sql += " where " + attruArra[5] + "=" + Integer.parseInt(value);
+                }else{
+                    sql += " where " + attruArra[5] + " ='" +value+"'";
+                }
+                break;
+        }
+        return sql;
+    }
+
+    public static  String getQuerySqlByPage( int pageNo, int pageSize,int attrCode,String value){
+        String sql="select *from "+table;
+        switch (attrCode){
+            case 0://表示查询所有
+            	sql+=" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+            	break;
+            case 1:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[0]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                    sql+=" where "+attruArra[0]+" ='"+value+"' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+                break;
+
+            case 2:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[1]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                    sql+=" where "+attruArra[1]+" ='"+value+"' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+                break;
+
+            case 3:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[2]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                    sql+=" where "+attruArra[2]+" ='"+value+"' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+            break;
+
+            case 4:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[3]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                    sql+=" where " + attruArra[3] + " like '%" +value+"%' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+                break;
+
+
+            case 5:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[4]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                	sql+=" where " + attruArra[4] + " like '%" +value+"%' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+                break;
+                
+            case 6:
+                if(isNum(value)){
+                    sql+=" where "+attruArra[5]+" ="+value+" limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }else {
+                    sql+=" where "+attruArra[5]+" ='"+value+"' limit "+(pageNo-1)*pageSize+" , "+pageSize;
+                }
+                break;
+
+        }
+    return sql;
+    }
+
+    //正则表达式判断是否是数字
+    public static boolean isNum(String str){
+        String regularExpression = "^\\+{0,1}[1-9]\\d*";
+        Pattern p = Pattern.compile(regularExpression);
+        Matcher m = p.matcher(str);
+        if (str.length() == 0) {
+            return false;
+        } else {
+            if (m.matches()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+
+}
